@@ -9,7 +9,7 @@ const FormSubmit = () => {
     <>
       <Grid container flexDirection="column">
         <ButtonToHome />
-        <Box display="flex" flexDirection="column">
+        <Box display="flex" flexDirection="row">
           <ListOfBooks />
           <FormSubmitBook isEdit={false} />
         </Box>

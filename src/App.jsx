@@ -8,7 +8,7 @@ import Error404 from './pages/Error404';
 function App() {
   return (
     <>
-      <Container sx={{ background: '#3F51B5', height: 50 }} />
+      <Container maxWidth="100" sx={{ background: '#3F51B5', height: 50 }} />
 
       <BrowserRouter>
         <Routes>

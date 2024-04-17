@@ -1,6 +1,7 @@
 import { createContext, useReducer, useState } from 'react';
 import generateId from '../helpers/generateId';
 import { helphttp } from '../helpers/helphttp';
+import useSnackBar from '../hooks/useSnackBar';
 export const bookContext = createContext();
 const PORT = import.meta.env.VITE_BACKEND_PORT || 5000;
 const url = `http://localhost:${PORT}/books`;
@@ -39,11 +40,14 @@ const reducer = (state, action) => {
 export const BookProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialBooks);
   const [filter, setFilter] = useState('');
+  const { openSnackbar, handleOpenSnackBar, handleCloseSnackbar, action } =
+    useSnackBar();
   const createBook = async (formData) => {
     formData.pages = parseInt(formData.pages);
     formData.id = generateId(formData.title);
     try {
       await http.post(url, { body: formData });
+      handleOpenSnackBar('create');
       return dispatch({
         type: 'CREATE_BOOK',
         payload: formData,
@@ -57,7 +61,7 @@ export const BookProvider = ({ children }) => {
     book.pages = parseInt(book.pages);
     try {
       const response = await http.patch(`${url}/${id}`, { body: book });
-      console.log(response);
+      handleOpenSnackBar('upload');
       return dispatch({
         type: 'UPDATE_BOOK',
         payload: response,
@@ -69,6 +73,7 @@ export const BookProvider = ({ children }) => {
   const deleteBookContext = async (id) => {
     try {
       await http.del(`${url}/${id}`);
+      handleOpenSnackBar('delete');
     } catch (error) {
       alert(error);
     }
@@ -98,6 +103,9 @@ export const BookProvider = ({ children }) => {
         updateBook,
         deleteBookContext,
         url,
+        openSnackbar,
+        handleCloseSnackbar,
+        action,
       }}
     >
       {children}
