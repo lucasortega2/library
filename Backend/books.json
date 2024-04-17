@@ -1,0 +1,101 @@
+[
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c1",
+    "title": "Cien años de soledad",
+    "description": "Novela de García Márquez. La saga de los Buendía en Macondo, con elementos de realismo mágico.",
+    "pages": 100,
+    "image_url": "https://images.cdn3.buscalibre.com/fit-in/360x360/61/8d/618d227e8967274cd9589a549adff52d.jpg",
+    "publication_date": "1968",
+    "extract": "Muchos años después, frente al pelotón de fusilamiento, el coronel Aureliano Buendía había de recordar aquella tarde remota en que su padre lo llevó a conocer el hielos."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c2",
+    "title": "1984",
+    "description": "Distopía de Orwell. Winston Smith cuestiona la realidad bajo el control del Gran Hermano.",
+    "pages": 328,
+    "image_url": "https://images.cdn1.buscalibre.com/fit-in/360x360/b0/39/b039af065268818b7bd3b0e016f8db65.jpg",
+    "publication date": "1949",
+    "extract": "Si quieres una imagen del futuro, imagina una bota aplastando un rostro humano para siempres."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c3",
+    "title": "El señor de los anillos",
+    "description": "Trilogía de Tolkien. Frodo busca destruir un anillo para salvar la Tierra Media.",
+    "pages": 1178,
+    "image_url": "https://http2.mlstatic.com/D_NQ_NP_688188-MLM52351332358_112022-O.webp",
+    "publication date": "1954-1955",
+    "extract": "No todos los que vagan están perdidos."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c4",
+    "title": "Don Quijote de la Mancha",
+    "description": "Novela satírica de Cervantes. Las aventuras absurdas de Don Quijote y Sancho Panza.",
+    "pages": 1056,
+    "image_url": "https://www.penguinlibros.com/ar/1584719/don-quijote-de-la-mancha-coleccion-alfaguara-clasicos.jpg",
+    "publication date": "1605 (Parte 1) y 1615 (Parte 2)",
+    "extract": "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c5",
+    "title": "Harry Potter y la piedra filosofal",
+    "description": "Rowling introduce a Harry Potter en Hogwarts, donde descubre una conspiración para robar la Piedra Filosofal.",
+    "pages": 332,
+    "image_url": "https://images.cdn3.buscalibre.com/fit-in/360x360/ce/e6/cee6ef96dad70d3f599b953f0e50afc7.jpg",
+    "publication date": "1997",
+    "extract": "El señor y la señora Dursley, que vivían en el número 4 de Privet Drive, estaban orgullosos de decir que eran muy normales, afortunadamente."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c6",
+    "title": "Orgullo y prejuicio",
+    "description": "Austen narra el amor entre Elizabeth Bennet y Mr. Darcy en la Inglaterra del siglo XIX.",
+    "pages": 416,
+    "image_url": "https://assets-global.website-files.com/6034d7d1f3e0f52c50b2adee/625452ebb0e15e764981b44c_6034d7d1f3e0f55fcab2b2de_Orgullo-y-prejuicio-jane-austen-editorial-alma.jpeg",
+    "publication date": "1813",
+    "extract": "Es una verdad mundialmente reconocida que un hombre soltero, poseedor de una gran fortuna, necesita una esposa."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c7",
+    "title": "El nombre del viento",
+    "description": "Rothfuss presenta a Kvothe, un músico y mago legendario, en su búsqueda de la verdad.",
+    "pages": 896,
+    "image_url": "https://images.cdn3.buscalibre.com/fit-in/360x360/a7/90/a790dff70defe5c61b66fd73716b6e30.jpg",
+    "publication date": "2007",
+    "extract": "Ha pasado mucho tiempo. Bastante tiempo. Lo suficiente para que los detalles se vuelvan borrosos y los recuerdos se conviertan en leyendas."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c8",
+    "title": "Matar un ruiseñor",
+    "description": "Harper Lee aborda el racismo en el sur de Estados Unidos a través de la perspectiva de Scout Finch.",
+    "pages": 336,
+    "image_url": "https://www.tematika.com/media/catalog/Ilhsa/Imagenes/690144.jpg",
+    "publication date": "1960",
+    "extract": "Cuando era muy niño recordaba que su padre le había dicho que dejara de golpear a su hermana, pero había olvidado el consejo."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c9",
+    "title": "El retrato de Dorian Gray",
+    "description": "Wilde sigue la vida de Dorian Gray y su retrato, explorando la dualidad humana.",
+    "pages": 272,
+    "image_url": "https://www.planetadelibros.com.ar/usuaris/libros/fotos/383/m_libros/382805_portada_el-retrato-de-dorian-gray_oscar-wilde_202307191606.jpg",
+    "publication date": "1890",
+    "extract": "El estudio era pequeño y desordenado, y el joven que lo habitaba parecía tener todas las cualidades para convertirse en uno de esos artistas a los que llaman prometedores."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18c0",
+    "title": "Crónicas marcianas",
+    "description": "Bradbury presenta relatos sobre la colonización de Marte, reflexionando sobre la humanidad.",
+    "pages": 304,
+    "image_url": "https://www.planetadelibros.com.ar/usuaris/libros/fotos/311/m_libros/310692_portada_cronicas-marcianas_ray-bradbury_201906251540.jpg",
+    "publication date": "1950",
+    "extract": "Una cosa era segura: la luna estaba lejos, muy lejos, en el cielo."
+  },
+  {
+    "id": "dcdd0fad-a94c-4810-8acc-5f108d3b18d1",
+    "title": "Los miserables",
+    "description": "Hugo sigue las vidas de Jean Valjean y el inspector Javert en la Francia del siglo XIX.",
+    "pages": 1232,
+    "image_url": "https://images.cdn2.buscalibre.com/fit-in/360x360/6d/ff/6dffa9565827544a81ada85c50c2400b.jpg",
+    "publication date": "1862",
+    "extract": "El 24 de febrero de 1815, el vigésimo primer año del destierro de Napoleón en la isla de Elba, llegó a Marsella el buque Faraón procedente de Smyrna, Trieste y Nápoles."
+  }
+]

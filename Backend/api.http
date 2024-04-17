@@ -1,0 +1,33 @@
+### 
+get http://localhost:5000/books
+
+
+###
+get http://localhost:5000/books/dcdd0fad-a94c-4810-8acc-5f108d3b18c5
+
+
+###
+post http://localhost:5000/books
+Content-Type: application/json
+
+{
+  "title": "El laberinto de los asdasd",
+  "publication_date": "asdasdasd",
+  "description": "El laberinto de los espíritus es una novela del escritor español Carlos Ruiz Zafón, publicada en 2016. Es la cuarta y última entrega de la serie El Cementerio de los Libros Olvidados. La hilos Libros Olvidados. los Libros Olvidados. los Libros Olvidados. los Libros Olvidados. storia sigue a Daniel Sempere, quien se embarca en una búsqueda para desentrañar los misterios del palos Librolos Libros Olvidados. los Libros Olvidados. los Libros Olvidados. los Libros Olvidados. los Libros Olvidados. s Olvidados. los Libros Olvidados. los Libros Olvidados. los Libros Olvidados. los Libros Olvidados. sado de slos Libros Olvidados. los Libros Olvidados. los Libros Olvidados. u familia y del enigmáti. ",
+  "pages": 1088,
+  "image_url": "https://img.freepik.com/fotos-premium/libro-harry-potter-piedra-filosofal_670382-7511.jpg",
+  "extract": "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd"
+}
+
+
+###
+PATCH  http://localhost:5000/books/bc6f1ada-896b-43f3-909a-8d6e5116f8a5
+Content-Type: application/json
+
+{
+  "title": "El laberinto de la perdicion",
+  "pages": 20
+}
+
+###
+DELETE http://localhost:5000/books/asdasd-6422-4177-be61-cfb32042bd94
