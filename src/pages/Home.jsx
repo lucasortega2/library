@@ -7,10 +7,11 @@ import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import CardComponent from '../components/CardComponent';
+import MQ from '../hooks/useMQ';
 
 const Home = () => {
   const { filteredBooks } = useContext(bookContext);
-
+  const matches = MQ('md');
   return (
     <>
       <Container sx={{ margin: '30px auto' }} maxWidth="xl">
@@ -19,7 +20,7 @@ const Home = () => {
         </Typography>
         <Box
           display="flex"
-          flexDirection="row"
+          flexDirection={matches ? 'row' : 'column'}
           justifyContent="space-between"
           alignItems="center"
         >

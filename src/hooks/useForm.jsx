@@ -1,18 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { bookContext } from '../contexts/bookContext';
-const initialForm = {
-  title: '',
-  description: '',
-  pages: '',
-  publication_date: '',
-  image_url: '',
-  extract: '',
-};
-const useForm = (dataToEdit, handleCloseModal) => {
+
+const useForm = (initialForm, validateForm, dataToEdit, handleCloseModal) => {
   const { state, createBook, updateBook, deleteBookContext } =
     useContext(bookContext);
   const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+  const [blur, setBlur] = useState({});
   const deleteBook = (id) => {
     const confirmation = confirm(
       'Estas seguro que quieres eliminar el libro seleccionado ? ',
@@ -24,31 +19,43 @@ const useForm = (dataToEdit, handleCloseModal) => {
       setForm(dataToEdit);
     }
   }, [dataToEdit]);
+
   const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
-
+  const handleBlur = (e) => {
+    handleChange(e);
+    setErrors(validateForm(form));
+    setBlur({ ...blur, [e.target.id]: true });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const isEmptyField = Object.values(form).every((value) => value !== '');
-    if (!isEmptyField) return alert('complete all fields');
     const exist = state.some((book) => book.id === form.id);
-    if (exist) {
-      updateBook(form);
+    const withoutError = Object.keys(errors).length === 0;
+    if (withoutError) {
+      if (exist) {
+        updateBook(form);
+      } else {
+        createBook(form);
+      }
+      setBlur({});
+      setForm(initialForm);
+      if (dataToEdit) handleCloseModal();
     } else {
-      createBook(form);
+      alert('Error en el formulario, verifique nuevamente');
     }
-    setForm(initialForm);
-    if (dataToEdit) handleCloseModal();
   };
   return {
     form,
     deleteBook,
     handleChange,
     handleSubmit,
+    handleBlur,
+    errors,
+    blur,
   };
 };
 

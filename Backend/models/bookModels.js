@@ -37,6 +37,7 @@ export const createBookModel = async ({ input }) => {
   const RequestSql = `INSERT INTO books (id, title, description, pages, image_url, publication_date, extract) 
                VALUES (?, ?, ?, ?, ?, ?, ?)`;
   const id = randomUUID();
+
   const values = [
     id,
     title,
@@ -46,8 +47,17 @@ export const createBookModel = async ({ input }) => {
     publication_date,
     extract,
   ];
+  const newBook = {
+    id,
+    title,
+    description,
+    pages,
+    image_url,
+    publication_date,
+    extract,
+  };
   try {
-    const newBook = await connection.query(RequestSql, values);
+    await connection.query(RequestSql, values);
     return newBook;
   } catch (error) {
     console.log(error);
@@ -74,7 +84,7 @@ export const updateBookModel = async ({ id, data }) => {
     extract = ?
   WHERE id = ?
 `;
-  const querySql = await connection.query(updateQuery, [
+  await connection.query(updateQuery, [
     title,
     description,
     pages,
@@ -83,7 +93,7 @@ export const updateBookModel = async ({ id, data }) => {
     extract,
     id,
   ]);
-  return data;
+  return bookEdited;
 };
 
 export const deleteBookModel = async ({ id }) => {
@@ -92,6 +102,7 @@ export const deleteBookModel = async ({ id }) => {
       'delete from books where id = ?',
       [id],
     );
+
     const removed = bookToDelete.affectedRows;
     if (removed === 0) return false;
     return true;

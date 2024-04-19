@@ -1,5 +1,4 @@
-import { createContext, useReducer, useState } from 'react';
-import generateId from '../helpers/generateId';
+import { createContext, useEffect, useReducer, useState } from 'react';
 import { helphttp } from '../helpers/helphttp';
 import useSnackBar from '../hooks/useSnackBar';
 export const bookContext = createContext();
@@ -21,8 +20,7 @@ const reducer = (state, action) => {
     case 'UPDATE_BOOK': {
       const updatedState = state.map((book) => {
         if (book.id === action.payload.id) {
-          const newId = generateId(action.payload.title);
-          return { ...book, id: newId, ...action.payload };
+          return { ...book, ...action.payload };
         } else {
           return book;
         }
@@ -40,17 +38,33 @@ const reducer = (state, action) => {
 export const BookProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialBooks);
   const [filter, setFilter] = useState('');
-  const { openSnackbar, handleOpenSnackBar, handleCloseSnackbar, action } =
-    useSnackBar();
+  const {
+    openSnackbar,
+    handleOpenSnackBar,
+    handleCloseSnackbar,
+    action,
+    error,
+  } = useSnackBar();
+
   const createBook = async (formData) => {
-    formData.pages = parseInt(formData.pages);
-    formData.id = generateId(formData.title);
+    formData.pages = parseInt(formData.pages) || 'string';
+
     try {
-      await http.post(url, { body: formData });
+      const newBook = await http.post(url, { body: formData });
+      if (newBook.success === false) {
+        const error = {
+          input: newBook.error.issues[0].path[0],
+          error: newBook.error.issues[0].message,
+        };
+        const message = `The field "${error.input}" has the following error: ${error.error}`;
+
+        handleOpenSnackBar('error', message);
+        return;
+      }
       handleOpenSnackBar('create');
       return dispatch({
         type: 'CREATE_BOOK',
-        payload: formData,
+        payload: newBook,
       });
     } catch (error) {
       alert(error);
@@ -60,11 +74,11 @@ export const BookProvider = ({ children }) => {
     const { id } = book;
     book.pages = parseInt(book.pages);
     try {
-      const response = await http.patch(`${url}/${id}`, { body: book });
+      const uptadedBook = await http.patch(`${url}/${id}`, { body: book });
       handleOpenSnackBar('upload');
       return dispatch({
         type: 'UPDATE_BOOK',
-        payload: response,
+        payload: uptadedBook,
       });
     } catch (error) {
       alert(error);
@@ -106,6 +120,7 @@ export const BookProvider = ({ children }) => {
         openSnackbar,
         handleCloseSnackbar,
         action,
+        error,
       }}
     >
       {children}
