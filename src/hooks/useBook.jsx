@@ -9,7 +9,7 @@ const useBook = (id) => {
     const getBook = async () => {
       try {
         const response = await http.get(`${url}/${id}`);
-        setBook(response[0]);
+        setBook(response);
       } catch (error) {
         console.error('Error fetching book details:', error);
       }

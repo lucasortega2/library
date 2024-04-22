@@ -22,7 +22,7 @@ const validateForm = (form) => {
           errors[key] = 'El campo tiene menos de 10 carácteres';
         }
 
-        if (form[key].length >= 30 && !isEmpty) {
+        if (form[key].length >= 800 && !isEmpty) {
           errors[key] = 'El campo tiene más de 800 carácteres';
         }
         break;
@@ -42,7 +42,7 @@ const validateForm = (form) => {
         break;
       case 'publication_date':
         if (form[key].length > 4 && !isEmpty) {
-          errors[key] = 'El campo tiene más de 4 carácteres';
+          errors[key] = 'El campo solo tiene que tener 4 carácteres';
         }
         break;
       case 'image_url':
@@ -51,8 +51,8 @@ const validateForm = (form) => {
         }
         break;
       case 'extract':
-        if (form[key].length > 150 && !isEmpty) {
-          errors[key] = 'El campo tiene más de 150 carácteres';
+        if (form[key].length > 200 && !isEmpty) {
+          errors[key] = 'El campo tiene que tener como máximo 200 caracteres';
         }
 
         break;

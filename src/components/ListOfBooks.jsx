@@ -65,7 +65,7 @@ const ListOfBooks = () => {
                           <EditIcon onClick={() => handleOpenModal(book)} />
 
                           <DeleteForeverIcon
-                            onClick={() => deleteBook(book.id)}
+                            onClick={() => deleteBook(book._id)}
                           />
                         </>
                       )}

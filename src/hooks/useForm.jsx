@@ -33,7 +33,7 @@ const useForm = (initialForm, dataToEdit, handleCloseModal) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const exist = state.some((book) => book.id === form.id);
+    const exist = state.some((book) => book._id === form._id);
     const withoutError = Object.keys(errors).length === 0;
     if (withoutError) {
       if (exist) {

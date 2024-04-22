@@ -4,7 +4,7 @@ import {
   getAllBooksModel,
   getBookForIdModel,
   updateBookModel,
-} from '../models/bookModels.js';
+} from '../models/NOSQL/bookModels.js';
 
 import {
   validatePartialSchema,

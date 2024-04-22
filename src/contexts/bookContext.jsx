@@ -19,7 +19,7 @@ const reducer = (state, action) => {
     }
     case 'UPDATE_BOOK': {
       const updatedState = state.map((book) => {
-        if (book.id === action.payload.id) {
+        if (book._id === action.payload._id) {
           return { ...book, ...action.payload };
         } else {
           return book;
@@ -29,7 +29,7 @@ const reducer = (state, action) => {
     }
 
     case 'DELETE_BOOK': {
-      const newBooks = state.filter((book) => book.id !== action.payload);
+      const newBooks = state.filter((book) => book._id !== action.payload);
       return newBooks;
     }
   }
@@ -48,7 +48,6 @@ export const BookProvider = ({ children }) => {
 
   const createBook = async (formData) => {
     formData.pages = parseInt(formData.pages) || 'string';
-
     try {
       const newBook = await http.post(url, { body: formData });
       if (newBook.success === false) {
@@ -57,7 +56,6 @@ export const BookProvider = ({ children }) => {
           error: newBook.error.issues[0].message,
         };
         const message = `The field "${error.input}" has the following error: ${error.error}`;
-
         handleOpenSnackBar('error', message);
         return;
       }
@@ -70,15 +68,15 @@ export const BookProvider = ({ children }) => {
       alert(error);
     }
   };
-  const updateBook = async (book) => {
-    const { id } = book;
-    book.pages = parseInt(book.pages);
+  const updateBook = async (bookToEdit) => {
+    const id = bookToEdit._id;
+    bookToEdit.pages = parseInt(bookToEdit.pages);
     try {
-      const uptadedBook = await http.patch(`${url}/${id}`, { body: book });
+      await http.patch(`${url}/${id}`, { body: bookToEdit });
       handleOpenSnackBar('upload');
       return dispatch({
         type: 'UPDATE_BOOK',
-        payload: uptadedBook,
+        payload: bookToEdit,
       });
     } catch (error) {
       alert(error);

@@ -3,31 +3,30 @@ get http://localhost:5000/books
 
 
 ###
-get http://localhost:5000/books/dcdd0fad-a94c-4810-8acc-5f108d3b18c5
+get http://localhost:5000/books/6626ab22edbe06344f7e9aae
 
 
 ###
 post http://localhost:5000/books
 Content-Type: application/json
 
-{
-  "title": "El laberinto de los asdasd",
-  "publication_date": "asdasdasd",
-  "description": "a ",
-  "pages": 1088,
-  "image_url": "https://img.freepik.com/fotos-premium/libro-harry-potter-piedra-filosofal_670382-7511.jpg",
-  "extract": "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd"
-}
+ {
+    "title": "Cien años de soledad",
+    "description": "Novela de García Márquez. La saga de los Buendía en Macondo, con elementos de realismo mágico.",
+    "pages": 100,
+    "image_url": "https://images.cdn3.buscalibre.com/fit-in/360x360/61/8d/618d227e8967274cd9589a549adff52d.jpg",
+    "publication_date": "1968",
+    "extract": "Muchos años después, frente al pelotón de fusilamiento, el coronel Aureliano Buendía había de recordar aquella tarde remota en que su padre lo llevó a conocer el hielos."
+  }
 
 
 ###
-PATCH  http://localhost:5000/books/bc6f1ada-896b-43f3-909a-8d6e5116f8a5
+PATCH  http://localhost:5000/books/6626ab22edbe06344f7e9aae
 Content-Type: application/json
 
 {
-  "title": "El laberinto de la perdicion",
-  "pages": 20
+  "title": "Don quijote de la mancha"
 }
 
 ###
-DELETE http://localhost:5000/books/asdasd-6422-4177-be61-cfb32042bd94
+DELETE http://localhost:5000/books/6626b4c4d65553a683c3d313

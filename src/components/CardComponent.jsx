@@ -20,7 +20,7 @@ const truncateDescription = (description) => {
 };
 
 const CardComponent = ({ book }) => {
-  const { title, description, image_url, pages, id } = book;
+  const { title, description, image_url, pages, _id } = book;
   const shortDescription = truncateDescription(description);
 
   return (
@@ -51,7 +51,7 @@ const CardComponent = ({ book }) => {
           <Typography mt={1}>Pages: {pages}</Typography>
         </CardContent>
         <CardActions sx={{ marginBottom: 1, width: '200px' }}>
-          <NavLink to={`/home/${id}`} style={{ textDecoration: 'none' }}>
+          <NavLink to={`/home/${_id}`} style={{ textDecoration: 'none' }}>
             <Button variant="contained">See more</Button>
           </NavLink>
         </CardActions>
