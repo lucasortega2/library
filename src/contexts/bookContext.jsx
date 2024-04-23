@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { helphttp } from '../helpers/helphttp';
 import useSnackBar from '../hooks/useSnackBar';
+import useLoader from '../hooks/useLoader';
 
 export const bookContext = createContext();
 const PORT = import.meta.env.VITE_BACKEND_PORT || 5000;
@@ -27,10 +28,7 @@ const reducer = (state, action) => {
 export const BookProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, []);
   const [filter, setFilter] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const handleChangeLoading = () => {
-    setIsLoading(false);
-  };
+  const { isLoading, handleChangeLoading } = useLoader();
   const {
     openSnackbar,
     handleOpenSnackBar,
@@ -40,8 +38,8 @@ export const BookProvider = ({ children }) => {
   } = useSnackBar();
 
   useEffect(() => {
+    handleChangeLoading(true);
     const getAllBooks = async () => {
-      const response = await fetch(url);
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -52,13 +50,14 @@ export const BookProvider = ({ children }) => {
       } catch (error) {
         console.error('Error fetching books:', error);
       } finally {
-        setIsLoading(false);
+        handleChangeLoading(false);
       }
     };
     getAllBooks();
   }, []);
 
   const createBook = async (formData) => {
+    handleChangeLoading(true);
     formData.pages = parseInt(formData.pages) || 'string';
     try {
       const newBook = await http.post(url, { body: formData });
@@ -78,10 +77,14 @@ export const BookProvider = ({ children }) => {
       });
     } catch (error) {
       alert(error);
+    } finally {
+      handleChangeLoading(false);
     }
   };
 
   const updateBook = async (bookToEdit) => {
+    handleChangeLoading(true);
+
     const id = bookToEdit._id;
     bookToEdit.pages = parseInt(bookToEdit.pages);
     try {
@@ -93,15 +96,21 @@ export const BookProvider = ({ children }) => {
       });
     } catch (error) {
       alert(error);
+    } finally {
+      handleChangeLoading(false);
     }
   };
 
   const deleteBookContext = async (id) => {
+    handleChangeLoading(true);
+
     try {
       await http.del(`${url}/${id}`);
       handleOpenSnackBar('delete');
     } catch (error) {
       alert(error);
+    } finally {
+      handleChangeLoading(false);
     }
     return dispatch({
       type: 'DELETE_BOOK',
@@ -137,7 +146,6 @@ export const BookProvider = ({ children }) => {
         action,
         error,
         isLoading,
-        handleChangeLoading,
       }}
     >
       {children}
