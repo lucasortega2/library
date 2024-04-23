@@ -8,6 +8,7 @@ const PORT = process.env.PORT ?? envs.PORT;
 const URI = process.env.MONGODB_URI || envs.URI;
 app.disable('x-powered-by');
 app.use(cors());
+
 app.use(json());
 
 app.use('/books', booksRouter);

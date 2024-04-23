@@ -37,8 +37,10 @@ export const BookProvider = ({ children }) => {
 
   useEffect(() => {
     const getAllBooks = async () => {
+      const response = await fetch(url);
       try {
         const response = await fetch(url);
+        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to fetch books');
         }
