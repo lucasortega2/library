@@ -1,42 +1,31 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { helphttp } from '../helpers/helphttp';
 import useSnackBar from '../hooks/useSnackBar';
+
 export const bookContext = createContext();
 const PORT = import.meta.env.VITE_BACKEND_PORT || 5000;
-const url = `http://localhost:${PORT}/books`;
+const url = `https://backend-library-2j6c.onrender.com/books`;
 const http = helphttp();
-const getAllBooks = async () => {
-  const response = await fetch(url);
-  const responseData = await response.json();
-  return responseData;
-};
-const initialBooks = await getAllBooks();
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'CREATE_BOOK': {
+    case 'SET_BOOKS':
+      return action.payload;
+    case 'CREATE_BOOK':
       return [...state, action.payload];
-    }
-    case 'UPDATE_BOOK': {
-      const updatedState = state.map((book) => {
-        if (book._id === action.payload._id) {
-          return { ...book, ...action.payload };
-        } else {
-          return book;
-        }
-      });
-      return updatedState;
-    }
-
-    case 'DELETE_BOOK': {
-      const newBooks = state.filter((book) => book._id !== action.payload);
-      return newBooks;
-    }
+    case 'UPDATE_BOOK':
+      return state.map((book) =>
+        book._id === action.payload._id ? { ...book, ...action.payload } : book,
+      );
+    case 'DELETE_BOOK':
+      return state.filter((book) => book._id !== action.payload);
+    default:
+      return state;
   }
 };
 
 export const BookProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialBooks);
+  const [state, dispatch] = useReducer(reducer, []);
   const [filter, setFilter] = useState('');
   const {
     openSnackbar,
@@ -45,6 +34,22 @@ export const BookProvider = ({ children }) => {
     action,
     error,
   } = useSnackBar();
+
+  useEffect(() => {
+    const getAllBooks = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Failed to fetch books');
+        }
+        const responseData = await response.json();
+        dispatch({ type: 'SET_BOOKS', payload: responseData });
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    };
+    getAllBooks();
+  }, []);
 
   const createBook = async (formData) => {
     formData.pages = parseInt(formData.pages) || 'string';
@@ -68,6 +73,7 @@ export const BookProvider = ({ children }) => {
       alert(error);
     }
   };
+
   const updateBook = async (bookToEdit) => {
     const id = bookToEdit._id;
     bookToEdit.pages = parseInt(bookToEdit.pages);
@@ -82,6 +88,7 @@ export const BookProvider = ({ children }) => {
       alert(error);
     }
   };
+
   const deleteBookContext = async (id) => {
     try {
       await http.del(`${url}/${id}`);
@@ -94,12 +101,15 @@ export const BookProvider = ({ children }) => {
       payload: id,
     });
   };
+
   const filterBooks = (products) => {
     return products.filter((book) =>
       book.title.toLowerCase().includes(filter.toLowerCase()),
     );
   };
+
   const filteredBooks = filterBooks(state);
+
   const handleFilter = (input) => {
     setFilter(input);
   };
@@ -125,3 +135,5 @@ export const BookProvider = ({ children }) => {
     </bookContext.Provider>
   );
 };
+
+export default BookProvider;
