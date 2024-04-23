@@ -51,8 +51,8 @@ const validateForm = (form) => {
         }
         break;
       case 'extract':
-        if (form[key].length > 200 && !isEmpty) {
-          errors[key] = 'El campo tiene que tener como máximo 200 caracteres';
+        if (form[key].length >= 250 && !isEmpty) {
+          errors[key] = 'El campo tiene que tener como máximo 250 caracteres';
         }
 
         break;
