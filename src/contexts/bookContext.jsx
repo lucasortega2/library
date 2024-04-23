@@ -27,6 +27,10 @@ const reducer = (state, action) => {
 export const BookProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, []);
   const [filter, setFilter] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const handleChangeLoading = () => {
+    setIsLoading(false);
+  };
   const {
     openSnackbar,
     handleOpenSnackBar,
@@ -47,6 +51,8 @@ export const BookProvider = ({ children }) => {
         dispatch({ type: 'SET_BOOKS', payload: responseData });
       } catch (error) {
         console.error('Error fetching books:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getAllBooks();
@@ -130,6 +136,8 @@ export const BookProvider = ({ children }) => {
         handleCloseSnackbar,
         action,
         error,
+        isLoading,
+        handleChangeLoading,
       }}
     >
       {children}

@@ -10,14 +10,19 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { NavLink, useParams } from 'react-router-dom';
 
 import useBook from '../hooks/useBook';
+import Loader from '../components/Loader';
+import { useContext } from 'react';
+import { bookContext } from '../contexts/bookContext';
 
 const Book = () => {
   const { id } = useParams();
   const book = useBook(id);
   const { title, description, pages, image_url, publication_date, extract } =
     book || {};
+  const { isLoading } = useContext(bookContext);
   return (
     <Container maxWidth="md">
+      {isLoading && <Loader />}
       <Paper
         elevation={5}
         sx={{

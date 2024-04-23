@@ -8,9 +8,10 @@ import Button from '@mui/material/Button';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import CardComponent from '../components/CardComponent';
 import MQ from '../hooks/useMQ';
+import Loader from '../components/Loader';
 
 const Home = () => {
-  const { filteredBooks } = useContext(bookContext);
+  const { filteredBooks, isLoading } = useContext(bookContext);
   const matches = MQ('md');
   return (
     <>
@@ -34,10 +35,13 @@ const Home = () => {
         </Box>
 
         <Grid container>
-          {filteredBooks &&
+          {isLoading ? (
+            <Loader />
+          ) : (
             filteredBooks.map((book, i) => (
               <CardComponent key={i} book={book} />
-            ))}
+            ))
+          )}
         </Grid>
       </Container>
     </>

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import App from './App.jsx';
 import './index.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -8,14 +7,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BookProvider } from './contexts/bookContext.jsx';
 import { Container } from '@mui/material';
-import {
-  BrowserRouter,
-  createHashRouter,
-  Navigate,
-  Route,
-  Routes,
-  RouterProvider,
-} from 'react-router-dom';
+import { createHashRouter, Navigate, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Book from './pages/Book';
 import FormSubmit from './pages/FormSubmit';
@@ -48,7 +40,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BookProvider>
       <Container maxWidth="100" sx={{ background: '#3F51B5', height: 50 }} />
       <RouterProvider router={router} />
-      {/* <App /> */}
     </BookProvider>
   </React.StrictMode>,
 );
