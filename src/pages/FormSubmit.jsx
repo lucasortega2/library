@@ -29,11 +29,15 @@ const FormSubmit = () => {
         display="flex"
         flexDirection="column"
         maxWidth="xl"
-        padding={0}
       >
         {isLoading && <Loader />}
-        <ButtonToHome />
-        <Box sx={{ maxWidth: '200px', alignSelf: 'flex-end', marginBottom: 2 }}>
+        <Box sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}>
+          <ButtonToHome />
           <Button
             color="success"
             variant="contained"

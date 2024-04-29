@@ -73,7 +73,9 @@ const ListOfBooks = ({
               <TableCell
                 sx={{ padding: 0, width: '5%' }}
                 align="center"
-              ></TableCell>
+              >
+                Acciones
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
