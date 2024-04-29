@@ -20,7 +20,6 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
 
   const { form, handleChange, handleSubmit, handleBlur, errors, blur } =
     useForm(initialForm, dataToEdit, handleCloseModal);
-
   return (
     <Box
       component="form"
@@ -41,8 +40,12 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
         action={action}
         error={error}
       />
-      <Typography variant={isEdit ? 'h6' : 'h4'} align="center">
-        {isEdit ? 'Edit your book' : 'Complete your book'}
+      <Typography
+        variant={'h4'}
+        align="center"
+        sx={{ fontWeight: 'bold', color: '#333' }}
+      >
+        {isEdit ? 'Edit Book' : 'Add New Book'}
       </Typography>
       <TextField
         size={isEdit ? 'small' : 'medium'}
@@ -61,30 +64,23 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
         error={errors.title && Object.keys(blur).includes('title') && true}
       />
       <TextField
-        size={isEdit ? 'small' : 'medium'}
-        id="description"
-        label="Description"
-        multiline
-        rows="3"
-        autoComplete="off"
+        id="extract"
+        label="Extract"
         fullWidth
-        name="description"
+        autoComplete="off"
+        name="extract"
         onChange={handleChange}
-        value={form.description}
+        value={form.extract}
+        multiline
         required
         onBlur={(e) => handleBlur(e)}
         helperText={
-          errors.description &&
-          Object.keys(blur).includes('description') &&
-          errors.description
+          errors.extract &&
+          Object.keys(blur).includes('extract') &&
+          errors.extract
         }
-        error={
-          errors.description &&
-          Object.keys(blur).includes('description') &&
-          true
-        }
+        error={errors.extract && Object.keys(blur).includes('extract') && true}
       />
-
       <TextField
         id="pages"
         label="Pages"
@@ -111,6 +107,7 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
         onChange={handleChange}
         value={form.publication_date}
         required
+        type="date"
         onBlur={(e) => handleBlur(e)}
         helperText={
           errors.publication_date &&
@@ -122,6 +119,9 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
           Object.keys(blur).includes('publication_date') &&
           true
         }
+        InputLabelProps={{
+          shrink: true,
+        }}
       />
 
       <TextField
@@ -144,25 +144,31 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
           errors.image_url && Object.keys(blur).includes('image_url') && true
         }
       />
-
       <TextField
-        id="extract"
-        label="Extract"
-        fullWidth
-        autoComplete="off"
-        name="extract"
-        onChange={handleChange}
-        value={form.extract}
+        size={isEdit ? 'small' : 'medium'}
+        id="description"
+        label="Description"
         multiline
+        rows="3"
+        autoComplete="off"
+        fullWidth
+        name="description"
+        onChange={handleChange}
+        value={form.description}
         required
         onBlur={(e) => handleBlur(e)}
         helperText={
-          errors.extract &&
-          Object.keys(blur).includes('extract') &&
-          errors.extract
+          errors.description &&
+          Object.keys(blur).includes('description') &&
+          errors.description
         }
-        error={errors.extract && Object.keys(blur).includes('extract') && true}
+        error={
+          errors.description &&
+          Object.keys(blur).includes('description') &&
+          true
+        }
       />
+
       <ButtonsForm isEdit={isEdit} handleCloseModal={handleCloseModal} />
     </Box>
   );

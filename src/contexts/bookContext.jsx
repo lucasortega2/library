@@ -2,9 +2,7 @@ import { createContext, useEffect, useReducer, useState } from 'react';
 import { helphttp } from '../helpers/helphttp';
 import useSnackBar from '../hooks/useSnackBar';
 import useLoader from '../hooks/useLoader';
-
 export const bookContext = createContext();
-const PORT = import.meta.env.VITE_BACKEND_PORT || 5000;
 const url = `https://backend-library-2j6c.onrender.com/books`;
 const http = helphttp();
 

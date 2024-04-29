@@ -6,7 +6,7 @@ const ButtonToHome = () => {
   return (
     <Box marginTop={3} marginBottom={3}>
       <NavLink to="/home">
-        <Button variant="contained">
+        <Button variant="outlined">
           <ArrowBackOutlinedIcon sx={{ marginRight: 1 }} /> Back to home
         </Button>
       </NavLink>

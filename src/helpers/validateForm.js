@@ -27,22 +27,16 @@ const validateForm = (form) => {
         }
         break;
       case 'pages':
-        const input = form[key];
-        const isNumber = parseInt(input);
-        if (!isNumber && !isEmpty) {
-          errors[key] = 'El valor debe ser un número';
-          if (input <= 0) {
-            errors[key] = 'Lás paginas no pueden ser 0 o negativas   ';
-          }
-          if (input > 6000) {
-            errors[key] = 'Las páginas no pueden ser mayor a 6000';
-          }
+        const input = parseInt(form[key]); // Convierte el input a número decimal
+        if (isNaN(input)) {
+          errors[key] = 'Las páginas deben ser un número mayor que 0';
+        } else if (input > 6000) {
+          errors[key] = 'Las páginas no pueden ser mayores a 6000';
         }
-
         break;
       case 'publication_date':
-        if (form[key].length > 4 && !isEmpty) {
-          errors[key] = 'El campo solo tiene que tener 4 carácteres';
+        if (form[key].length > 10 && !isEmpty) {
+          errors[key] = 'El campo solo tiene que tener 10 carácteres';
         }
         break;
       case 'image_url':

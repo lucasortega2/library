@@ -5,7 +5,7 @@ const bookSchema = z.object({
   description: z.string().min(10).max(800),
   pages: z.number().int().min(0).max(6000),
   image_url: z.string().max(120),
-  publication_date: z.string().max(4),
+  publication_date: z.string().max(12),
   extract: z.string().max(250),
 });
 

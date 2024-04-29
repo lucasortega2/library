@@ -38,7 +38,6 @@ const router = createHashRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BookProvider>
-      <Container maxWidth="100" sx={{ background: '#3F51B5', height: 50 }} />
       <RouterProvider router={router} />
     </BookProvider>
   </React.StrictMode>,

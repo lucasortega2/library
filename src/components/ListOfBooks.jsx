@@ -1,35 +1,48 @@
 import { useContext, useState } from 'react';
 import { bookContext } from '../contexts/bookContext';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Box from '@mui/material/Box';
 import {
-  Collapse,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
+  IconButton,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from '@mui/material';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import useForm from '../hooks/useForm';
 import EditBookModal from '../modals/EditBookModal';
+import useMQ from '../hooks/useMQ';
+import AlertDialog from './AlertDialog';
 
-const ListOfBooks = () => {
+const ListOfBooks = ({
+  dataToEdit,
+  openModal,
+  handleOpenModal,
+  handleCloseModal,
+}) => {
   const { state } = useContext(bookContext);
   const { deleteBook } = useForm();
   const [open, setOpen] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
-  const [dataToEdit, setDataToEdit] = useState();
-  const handleOpenModal = (book) => {
-    setDataToEdit(book);
-    setOpenModal(true);
+  const [bookToDeleteId, setBookToDeleteId] = useState(null);
+  const matches = useMQ('md');
+  const opelDialog = (id) => {
+    setBookToDeleteId(id);
+    setOpen(true);
   };
-  const handleCloseModal = () => setOpenModal(false);
-  const handleClick = () => {
-    setOpen(!open);
+  const closeDialog = () => {
+    setBookToDeleteId(null);
+    setOpen(false);
+  };
+  const handleDeleteBook = () => {
+    if (bookToDeleteId) {
+      deleteBook(bookToDeleteId);
+      closeDialog();
+    }
   };
 
   return (
@@ -39,44 +52,77 @@ const ListOfBooks = () => {
         openModal={openModal}
         handleCloseModal={handleCloseModal}
       />
-      <Box margin="0 auto">
-        <List sx={{ width: 350 }}>
-          <ListItemButton onClick={handleClick}>
-            <ListItemIcon>
-              <LibraryBooksIcon />
-            </ListItemIcon>
-            <ListItemText primary="Books" />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {state?.map((book, key) => {
-                return (
-                  <ListItemButton
-                    onMouseEnter={() => setHoverIndex(key)}
-                    onMouseLeave={() => setHoverIndex(null)}
-                    key={key}
-                    sx={{ padding: 0, pl: 4 }}
-                  >
-                    <ListItem>
-                      <ListItemText id={key} primary={book.title} />
-                      {hoverIndex === key && (
-                        <>
-                          <EditIcon onClick={() => handleOpenModal(book)} />
 
-                          <DeleteForeverIcon
-                            onClick={() => deleteBook(book._id)}
-                          />
-                        </>
-                      )}
-                    </ListItem>
-                  </ListItemButton>
-                );
-              })}
-            </List>
-          </Collapse>
-        </List>
-      </Box>
+      <TableContainer component={Paper} margin="0 auto">
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" sx={{ width: '10%' }}>
+                Title
+              </TableCell>
+              <TableCell align="center" sx={{ width: '10%' }}>
+                Page
+              </TableCell>
+              {matches && (
+                <TableCell align="center" sx={{ width: '65%' }}>
+                  Extract
+                </TableCell>
+              )}
+              <TableCell align="center" sx={{ width: '10%' }}>
+                Publication date
+              </TableCell>
+              <TableCell
+                sx={{ padding: 0, width: '5%' }}
+                align="center"
+              ></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {state?.map((book, key) => {
+              return (
+                <TableRow
+                  hover
+                  onMouseEnter={() => setHoverIndex(key)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                  key={key}
+                  sx={{ height: '75px', width: '20px' }}
+                >
+                  <TableCell>{book.title}</TableCell>
+                  <TableCell align="center">{book.pages}</TableCell>
+                  {matches && <TableCell>{book.extract}</TableCell>}
+                  <TableCell align="center">{book.publication_date}</TableCell>
+                  <TableCell style={{ padding: 0 }}>
+                    <Box
+                      display="flex"
+                      justifyContent="space-around"
+                      marginRight={2}
+                      visibility={hoverIndex === key ? 'visible' : 'hidden'}
+                    >
+                      <IconButton
+                        color="primary"
+                        onClick={() => handleOpenModal(book)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton
+                        color="error"
+                        onClick={() => opelDialog(book._id)}
+                      >
+                        <DeleteForeverIcon />
+                      </IconButton>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <AlertDialog
+        open={open}
+        closeDialog={closeDialog}
+        handleDelete={handleDeleteBook}
+      />
     </Box>
   );
 };

@@ -9,10 +9,7 @@ const useForm = (initialForm, dataToEdit, handleCloseModal) => {
   const [errors, setErrors] = useState({});
   const [blur, setBlur] = useState({});
   const deleteBook = (id) => {
-    const confirmation = confirm(
-      'Estas seguro que quieres eliminar el libro seleccionado ? ',
-    );
-    if (confirmation) deleteBookContext(id);
+    deleteBookContext(id);
   };
   useEffect(() => {
     if (dataToEdit) {
@@ -43,7 +40,7 @@ const useForm = (initialForm, dataToEdit, handleCloseModal) => {
       }
       setBlur({});
       setForm(initialForm);
-      if (dataToEdit) handleCloseModal();
+      handleCloseModal();
     } else {
       alert('Error en el formulario, verifique nuevamente');
     }

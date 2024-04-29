@@ -2,8 +2,8 @@ import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import Modal from '@mui/material/Modal';
 import FormSubmitBook from '../components/FormSubmitBook';
-
 import { IconButton, DialogContent } from '@mui/material';
+
 const style = {
   display: 'flex',
   flexDirection: 'column',
@@ -41,7 +41,7 @@ export default function EditBookModal({
 
         <DialogContent sx={{ display: 'flex', justifyContent: 'center' }}>
           <FormSubmitBook
-            isEdit={true}
+            isEdit={dataToEdit ? true : false}
             dataToEdit={dataToEdit}
             handleCloseModal={handleCloseModal}
           />

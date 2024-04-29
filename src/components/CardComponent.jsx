@@ -31,8 +31,11 @@ const CardComponent = ({ book }) => {
           display: 'flex',
           alignItems: 'center',
           flexDirection: 'column',
-          maxHeight: '500px',
+          justifyContent: 'space-evenly',
+          height: '600px',
+
           margin: 'auto',
+          padding: 2,
         }}
       >
         <CardMedia
@@ -40,17 +43,33 @@ const CardComponent = ({ book }) => {
             width: '100%',
             height: '300px',
             backgroundSize: 'contain',
+            padding: 10,
           }}
           image={image_url}
         />
-        <CardContent>
+        <CardContent
+          sx={{
+            height: 250,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}
+        >
           <Typography variant="h6" textAlign="center">
             {title}
           </Typography>
           <Typography textAlign="center">{shortDescription}</Typography>
           <Typography mt={1}>Pages: {pages}</Typography>
         </CardContent>
-        <CardActions sx={{ marginBottom: 1, width: '200px' }}>
+        <CardActions
+          sx={{
+            width: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            padding: 0,
+          }}
+        >
           <NavLink to={`/home/${_id}`} style={{ textDecoration: 'none' }}>
             <Button variant="contained">See more</Button>
           </NavLink>
