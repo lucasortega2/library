@@ -73,10 +73,7 @@ const ListOfBooks = ({
               >
                 Publication date
               </TableCell>
-              <TableCell
-                sx={{ padding: 0, width: '5%', padding: 0 }}
-                align="center"
-              >
+              <TableCell sx={{ width: '5%', padding: 0 }} align="center">
                 Acciones
               </TableCell>
             </TableRow>
