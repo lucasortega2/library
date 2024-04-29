@@ -31,12 +31,14 @@ const FormSubmit = () => {
         maxWidth="xl"
       >
         {isLoading && <Loader />}
-        <Box sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}
+        >
           <ButtonToHome />
           <Button
             color="success"
@@ -50,18 +52,13 @@ const FormSubmit = () => {
           openModal={openModal}
           handleCloseModal={handleCloseModal}
         />
-        <Box
-          display="flex"
-          flexDirection={'column'}
-          justifyContent="space-between"
-        >
-          <ListOfBooks
-            dataToEdit={dataToEdit}
-            openModal={openModal}
-            handleOpenModal={handleOpenModal}
-            handleCloseModal={handleCloseModal}
-          />
-        </Box>
+
+        <ListOfBooks
+          dataToEdit={dataToEdit}
+          openModal={openModal}
+          handleOpenModal={handleOpenModal}
+          handleCloseModal={handleCloseModal}
+        />
       </Box>
     </>
   );

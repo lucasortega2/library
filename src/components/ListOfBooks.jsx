@@ -56,22 +56,25 @@ const ListOfBooks = ({
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell align="center" sx={{ width: '10%' }}>
+              <TableCell align="center" sx={{ width: '10%', paddingX: 0 }}>
                 Title
               </TableCell>
-              <TableCell align="center" sx={{ width: '10%' }}>
+              <TableCell align="center" sx={{ width: '10%', paddingX: 0 }}>
                 Page
               </TableCell>
               {matches && (
-                <TableCell align="center" sx={{ width: '65%' }}>
+                <TableCell align="center" sx={{ width: '65%', paddingX: 0 }}>
                   Extract
                 </TableCell>
               )}
-              <TableCell align="center" sx={{ width: '10%' }}>
+              <TableCell
+                align="center"
+                sx={{ width: matches ? '10%' : '30%', paddingX: 0 }}
+              >
                 Publication date
               </TableCell>
               <TableCell
-                sx={{ padding: 0, width: '5%' }}
+                sx={{ padding: 0, width: '5%', padding: 0 }}
                 align="center"
               >
                 Acciones
