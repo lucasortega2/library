@@ -52,7 +52,6 @@ const ListOfBooks = ({
         openModal={openModal}
         handleCloseModal={handleCloseModal}
       />
-
       <TableContainer component={Paper} margin="0 auto">
         <Table>
           <TableHead>
