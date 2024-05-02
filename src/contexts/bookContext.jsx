@@ -5,7 +5,6 @@ import useLoader from '../hooks/useLoader';
 export const bookContext = createContext();
 const url = `https://backend-library-2j6c.onrender.com/books`;
 const http = helphttp();
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_BOOKS':
@@ -81,20 +80,21 @@ export const BookProvider = ({ children }) => {
   };
 
   const updateBook = async (bookToEdit) => {
-    console.log(bookToEdit);
     handleChangeLoading(true);
 
     const id = bookToEdit._id;
     bookToEdit.pages = parseInt(bookToEdit.pages);
     try {
-      await http.patch(`${url}/${id}`, { body: bookToEdit });
+      console.log('hla');
+      const result = await http.patch(`${url}/${id}`, { body: bookToEdit });
+      console.log(result);
       handleOpenSnackBar('upload');
       return dispatch({
         type: 'UPDATE_BOOK',
         payload: bookToEdit,
       });
     } catch (error) {
-      alert(error);
+      console.error(error.message);
     } finally {
       handleChangeLoading(false);
     }

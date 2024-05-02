@@ -34,11 +34,13 @@ export const postBookController = async (req, res) => {
 
 export const updateBookController = async (req, res) => {
   const book = validatePartialSchema(req.body);
-  if (!book.success)
-    return res.status(400).json({ message: 'Error en la validación de datos' });
+
+  if (!book.success) {
+    const result = book.error.issues[0].message;
+    return res.status(400).json({ message: result });
+  }
   const { id } = req.params;
   const updateBook = await updateBookModel({ id, data: book.data });
-
   if (updateBook === false)
     return res.status(404).json({ message: 'book not found' });
   res.json(updateBook);

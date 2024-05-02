@@ -13,8 +13,8 @@ const validateForm = (form) => {
         if (form[key].length < 3 && !isEmpty) {
           errors[key] = 'El campo tiene menos de 3 carácteres';
         }
-        if (form[key].length >= 30 && !isEmpty) {
-          errors[key] = 'El campo tiene más de 30 carácteres';
+        if (form[key].length > 60 && !isEmpty) {
+          errors[key] = 'El campo tiene más de 60 carácteres';
         }
         break;
       case 'description':
@@ -27,7 +27,7 @@ const validateForm = (form) => {
         }
         break;
       case 'pages':
-        const input = parseInt(form[key]); // Convierte el input a número decimal
+        const input = parseInt(form[key]);
         if (isNaN(input)) {
           errors[key] = 'Las páginas deben ser un número mayor que 0';
         } else if (input > 6000) {
@@ -40,8 +40,8 @@ const validateForm = (form) => {
         }
         break;
       case 'image_url':
-        if (form[key].length > 120 && !isEmpty) {
-          errors[key] = 'El campo tiene más de 120 carácteres';
+        if (form[key].length > 250 && !isEmpty) {
+          errors[key] = 'El campo tiene más de 250 carácteres';
         }
         break;
       case 'extract':
