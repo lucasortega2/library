@@ -2,7 +2,10 @@ import { TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import useForm from '../hooks/useForm';
 import ButtonsForm from './ButtonsForm';
+import useMQ from '../hooks/useMQ';
 const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
+  const matches = useMQ('md');
+  console.log(matches);
   const initialForm = {
     title: '',
     description: '',
@@ -18,15 +21,14 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
     <Box
       component="form"
       onSubmit={handleSubmit}
-      margin="0 auto"
       display="inline-flex"
       flexDirection="column"
-      justifyContent="space-between"
+      justifyContent="space-around"
       alignItems="center"
-      height="80vh"
       width="50vw"
       minWidth="300px"
-      minHeight="800px"
+      height="100%"
+      minHeight="650px"
     >
       <Typography
         variant={'h4'}
@@ -36,7 +38,9 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
         {isEdit ? 'Edit Book' : 'Add New Book'}
       </Typography>
       <TextField
-        size={isEdit ? 'small' : 'medium'}
+        sx={!matches ? { width: '250px' } : undefined}
+        inputProps={!matches ? { style: { fontSize: '13px' } } : undefined}
+        size={!matches ? 'small' : 'medium'}
         id="title"
         label="Title"
         fullWidth
@@ -51,7 +55,11 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
         }
         error={errors.title && Object.keys(blur).includes('title') && true}
       />
+
       <TextField
+        sx={!matches ? { width: '250px' } : undefined}
+        inputProps={!matches ? { style: { fontSize: '13px' } } : undefined}
+        size={!matches ? 'small' : 'medium'}
         id="extract"
         label="Extract"
         fullWidth
@@ -69,7 +77,11 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
         }
         error={errors.extract && Object.keys(blur).includes('extract') && true}
       />
+
       <TextField
+        sx={!matches ? { width: '250px' } : undefined}
+        inputProps={!matches ? { style: { fontSize: '13px' } } : undefined}
+        size={!matches ? 'small' : 'medium'}
         id="pages"
         label="Pages"
         fullWidth
@@ -87,6 +99,9 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
       />
 
       <TextField
+        sx={!matches ? { width: '250px' } : undefined}
+        inputProps={!matches ? { style: { fontSize: '13px' } } : undefined}
+        size={!matches ? 'small' : 'medium'}
         id="publication_date"
         label="Publication date"
         fullWidth
@@ -113,7 +128,9 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
       />
 
       <TextField
-        multiline
+        sx={!matches ? { width: '250px' } : undefined}
+        inputProps={!matches ? { style: { fontSize: '13px' } } : undefined}
+        size={!matches ? 'small' : 'medium'}
         id="image_url"
         label="Image url"
         fullWidth
@@ -132,8 +149,11 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
           errors.image_url && Object.keys(blur).includes('image_url') && true
         }
       />
+
       <TextField
-        size={isEdit ? 'small' : 'medium'}
+        sx={!matches ? { width: '250px' } : undefined}
+        inputProps={!matches ? { style: { fontSize: '13px' } } : undefined}
+        size={!matches ? 'small' : 'medium'}
         id="description"
         label="Description"
         multiline

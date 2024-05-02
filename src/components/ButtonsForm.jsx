@@ -10,9 +10,7 @@ const iconStyle = {
 const ButtonsForm = ({ isEdit }) => {
   const IconComponent = isEdit ? EditIcon : AddIcon;
   return (
-    <ListItemIcon
-      sx={{ width: 300, justifyContent: 'center', marginBottom: '20px' }}
-    >
+    <ListItemIcon sx={{ width: 300, justifyContent: 'center' }}>
       <Button
         type="submit"
         variant="contained"
