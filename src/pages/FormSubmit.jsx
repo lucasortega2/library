@@ -7,10 +7,14 @@ import { useContext, useState } from 'react';
 import { bookContext } from '../contexts/bookContext';
 import EditBookModal from '../modals/EditBookModal';
 import Appbar from '../components/AppBar';
+import SnackBar from '../components/SnackBar';
+
 const FormSubmit = () => {
   const { isLoading } = useContext(bookContext);
   const [openModal, setOpenModal] = useState(false);
   const [dataToEdit, setDataToEdit] = useState();
+  const { openSnackbar, handleCloseSnackbar, action, error } =
+    useContext(bookContext);
   const handleOpenModal = (book) => {
     if (book) {
       setDataToEdit(book);
@@ -58,6 +62,12 @@ const FormSubmit = () => {
           openModal={openModal}
           handleOpenModal={handleOpenModal}
           handleCloseModal={handleCloseModal}
+        />
+        <SnackBar
+          open={openSnackbar}
+          handleCloseSnackbar={handleCloseSnackbar}
+          action={action}
+          error={error}
         />
       </Box>
     </>

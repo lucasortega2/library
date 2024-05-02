@@ -1,14 +1,8 @@
 import { TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import SnackBar from '../components/SnackBar';
 import useForm from '../hooks/useForm';
 import ButtonsForm from './ButtonsForm';
-import { useContext } from 'react';
-import { bookContext } from '../contexts/bookContext';
-
 const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
-  const { openSnackbar, handleCloseSnackbar, action, error } =
-    useContext(bookContext);
   const initialForm = {
     title: '',
     description: '',
@@ -34,12 +28,6 @@ const FormSubmitBook = ({ dataToEdit, isEdit, handleCloseModal }) => {
       minWidth="300px"
       minHeight="800px"
     >
-      <SnackBar
-        open={openSnackbar}
-        handleCloseSnackbar={handleCloseSnackbar}
-        action={action}
-        error={error}
-      />
       <Typography
         variant={'h4'}
         align="center"

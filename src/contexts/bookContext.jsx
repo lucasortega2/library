@@ -81,6 +81,7 @@ export const BookProvider = ({ children }) => {
   };
 
   const updateBook = async (bookToEdit) => {
+    console.log(bookToEdit);
     handleChangeLoading(true);
 
     const id = bookToEdit._id;
